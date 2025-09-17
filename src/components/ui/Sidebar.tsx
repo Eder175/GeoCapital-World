@@ -2,10 +2,12 @@
 import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { useCallback } from 'react';
+import { useAuthContext } from '@/contexts/AuthContext';
 
 const Sidebar = () => {
   const router = useRouter();
   const pathname = usePathname() || '/';
+  const { logout } = useAuthContext();
 
   const linkClass = (path: string) =>
     `block px-4 py-2 rounded hover:bg-gray-700 transition ${
@@ -13,9 +15,9 @@ const Sidebar = () => {
     }`;
 
   const handleLogout = useCallback(() => {
-    localStorage.removeItem('token');
+    logout();
     router.push('/login');
-  }, [router]);
+  }, [logout, router]);
 
   return (
     <aside className="w-64 h-screen bg-gray-900 p-4 flex flex-col justify-between">
