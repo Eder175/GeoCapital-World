@@ -1,22 +1,21 @@
 'use client';
-import { useRouter } from 'next/router';
+import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { useEffect } from 'react';
+import { useCallback } from 'react';
 
 const Sidebar = () => {
   const router = useRouter();
-
-  const pathname = router.pathname;
+  const pathname = usePathname() || '/';
 
   const linkClass = (path: string) =>
     `block px-4 py-2 rounded hover:bg-gray-700 transition ${
       pathname === path ? 'bg-gray-800 text-blue-400' : 'text-white'
     }`;
 
-  const handleLogout = () => {
+  const handleLogout = useCallback(() => {
     localStorage.removeItem('token');
     router.push('/login');
-  };
+  }, [router]);
 
   return (
     <aside className="w-64 h-screen bg-gray-900 p-4 flex flex-col justify-between">

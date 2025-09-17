@@ -1,6 +1,6 @@
 'use client';
 import { ReactNode, useEffect } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import Sidebar from '@/components/ui/Sidebar';
 
 interface ProtectedLayoutProps {
