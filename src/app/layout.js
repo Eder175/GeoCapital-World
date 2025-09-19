@@ -1,12 +1,14 @@
-// Root layout — inclui html/body e envolve a app com AuthProvider
-import { AuthProvider } from '@/contexts/AuthContext';
+import '../styles/globals.css';
+
+export const metadata = {
+  title: 'GeoCapital',
+  description: 'Sistema de finanças pessoais',
+};
 
 export default function RootLayout({ children }) {
   return (
     <html lang="pt">
-      <body>
-        <AuthProvider>{children}</AuthProvider>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
